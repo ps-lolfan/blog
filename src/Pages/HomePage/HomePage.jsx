@@ -16,6 +16,10 @@ import post1 from "../../Data/data1.md";
 import post2 from "../../Data/data2.md";
 import post3 from "../../Data/data3.md";
 
+import Profile from "./Profile";
+
+import Works from "./Works";
+
 const useStyles = makeStyles((theme) => ({
   mainGrid: {
     marginTop: theme.spacing(3),
@@ -98,12 +102,21 @@ export default function Blog() {
       <Container maxWidth="lg">
         <Header title="Blog" sections={sections} />
         <main>
-          <MainFeaturedPost post={mainFeaturedPost} />
+          {/* <MainFeaturedPost post={mainFeaturedPost} />
           <Grid container spacing={4}>
             {featuredPosts.map((post) => (
               <FeaturedPost key={post.title} post={post} />
             ))}
+          </Grid> */}
+          <Grid container spacing={4} justify="space-between">
+            <Grid item xs="6" md="6" lg="6">
+              <Profile />
+            </Grid>
+            <Grid item xs="6" md="6" lg="6">
+              <Works />
+            </Grid>
           </Grid>
+
           {/* <Grid container spacing={5} className={classes.mainGrid}>
             <Main title="From the firehose" posts={posts} />
             <Sidebar

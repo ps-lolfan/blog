@@ -24,8 +24,14 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Header(props) {
   const classes = useStyles();
+
   const { title } = props;
 
+  const [open, setOpen] = React.useState(false);
+
+  function handleClick() {
+    setOpen(true);
+  }
   return (
     <React.Fragment>
       <Toolbar className={classes.toolbar}>
@@ -40,10 +46,12 @@ export default function Header(props) {
         >
           {title}
         </Typography>
-        <Button variant="outlined" size="small">
-          Sign up
+        <Button onClick={handleClick} variant="outlined" size="small">
+          Follow me
         </Button>
       </Toolbar>
+
+      {/* {open && } */}
     </React.Fragment>
   );
 }

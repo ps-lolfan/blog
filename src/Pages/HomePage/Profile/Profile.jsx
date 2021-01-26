@@ -1,57 +1,80 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
-import Button from "@material-ui/core/Button";
+import CardMedia from "@material-ui/core/CardMedia";
+import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
+import SkipPreviousIcon from "@material-ui/icons/SkipPrevious";
+import PlayArrowIcon from "@material-ui/icons/PlayArrow";
+import SkipNextIcon from "@material-ui/icons/SkipNext";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
-    minWidth: 275,
+    display: "flex",
   },
-  bullet: {
-    display: "inline-block",
-    margin: "0 2px",
-    transform: "scale(0.8)",
+  details: {
+    display: "flex",
+    flexDirection: "column",
   },
-  title: {
-    fontSize: 14,
+  content: {
+    flex: "1 0 auto",
   },
-  pos: {
-    marginBottom: 12,
+  cover: {
+    width: 151,
   },
-});
+  controls: {
+    display: "flex",
+    alignItems: "center",
+    paddingLeft: theme.spacing(1),
+    paddingBottom: theme.spacing(1),
+  },
+  playIcon: {
+    height: 38,
+    width: 38,
+  },
+}));
 
-export default function SimpleCard() {
+export default function MediaControlCard() {
   const classes = useStyles();
-  const bull = <span className={classes.bullet}>•</span>;
+  const theme = useTheme();
 
   return (
     <Card className={classes.root}>
-      <CardContent>
-        <Typography
-          className={classes.title}
-          color="textSecondary"
-          gutterBottom
-        >
-          Word of the Day
-        </Typography>
-        <Typography variant="h5" component="h2">
-          be{bull}nev{bull}o{bull}lent
-        </Typography>
-        <Typography className={classes.pos} color="textSecondary">
-          adjective
-        </Typography>
-        <Typography variant="body2" component="p">
-          well meaning and kindly.
-          <br />
-          {'"a benevolent smile"'}
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button size="small">Learn More</Button>
-      </CardActions>
+      <div className={classes.details}>
+        <CardContent className={classes.content}>
+          <Typography component="h5" variant="h5">
+            Live From Space
+          </Typography>
+          <Typography variant="subtitle1" color="textSecondary">
+            Mac Miller
+          </Typography>
+        </CardContent>
+        <div className={classes.controls}>
+          <IconButton aria-label="previous">
+            {theme.direction === "rtl" ? (
+              <SkipNextIcon />
+            ) : (
+              <SkipPreviousIcon />
+            )}
+          </IconButton>
+          <IconButton aria-label="play/pause">
+            <PlayArrowIcon className={classes.playIcon} />
+          </IconButton>
+          <IconButton aria-label="next">
+            {theme.direction === "rtl" ? (
+              <SkipPreviousIcon />
+            ) : (
+              <SkipNextIcon />
+            )}
+          </IconButton>
+        </div>
+      </div>
+      <CardMedia
+        className={classes.cover}
+        image="/static/images/cards/live-from-space.jpg"
+        title="Live from space album cover"
+      />
     </Card>
   );
 }
