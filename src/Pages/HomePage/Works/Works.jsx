@@ -35,7 +35,7 @@ export default function SimpleCard() {
           color="textSecondary"
           gutterBottom
         >
-          Word of the Day
+          Works
         </Typography>
         <Typography variant="h5" component="h2">
           be{bull}nev{bull}o{bull}lent

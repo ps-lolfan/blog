@@ -1,19 +1,32 @@
 import React, { Component } from "react";
 import NavBar from "../../Components/NavBar";
 import Footer from "../../Components/Footer";
-import HomeGround from "./HomeGround";
+import MainLanding from "./MainLanding";
+import Grid from "@material-ui/core/Grid";
 
-export default class HomePage extends Component {
+class HomePage extends Component {
   render() {
     return (
-      <div>
-        <NavBar title={"title"} />
-        <HomeGround />
-        <Footer
-          title={"footer title tbd"}
-          description={"some random description this will be changed in future"}
-        />
+      <div
+        style={{
+          backgroundColor: "#000",
+        }}
+      >
+        <Grid container>
+          <Grid item xs={12}>
+            <NavBar />
+            <MainLanding />
+            <Footer
+              title={"footer title tbd"}
+              description={
+                "some random description this will be changed in future"
+              }
+            />
+          </Grid>
+        </Grid>
       </div>
     );
   }
 }
+
+export default HomePage;
